@@ -23,7 +23,7 @@ function App() {
         <div><button aria-hidden disabled={isSelectedMax} onClick={isSelectedMax ? null : () => setSelected(selected + 1)}>Next</button></div>
         <div className={`Gallery-select-${selected}`}>
           <img src="/images/oranges.jpg" alt="" />
-          <img src="/images/euan.jpg" alt="" />
+          <img src="/images/self.jpg" alt="" />
           <img src="/images/bilbo.jpg" alt="" />
           <img src="/images/peel.jpg" alt="" />
         </div>

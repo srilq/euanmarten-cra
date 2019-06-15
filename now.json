@@ -1,7 +1,7 @@
 {
   "version": 2,
   "name": "euanmarten",
-  "alias": "euanmarten",
+  "alias": ["euanmarten", "euanmarten.com", "www.euanmarten.com"],
   "builds": [
     {
       "src": "package.json",

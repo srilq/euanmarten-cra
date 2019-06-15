@@ -2,7 +2,7 @@
   "version": 2,
   "name": "euanmarten",
   "alias": ["euanmarten", "euanmarten.com", "www.euanmarten.com"],
-  "regions": "lhr1",
+  "regions": ["lhr1"],
   "builds": [
     {
       "src": "package.json",

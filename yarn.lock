@@ -7832,6 +7832,10 @@ table@^5.2.3:
     slice-ansi "^2.1.0"
     string-width "^3.0.0"
 
+tachyons-verbose@^4.9.1:
+  version "4.9.1"
+  resolved "https://registry.yarnpkg.com/tachyons-verbose/-/tachyons-verbose-4.9.1.tgz#dafa9a02a3bb120735038b4543d9e9589005c660"
+
 tapable@^1.0.0, tapable@^1.1.0:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/tapable/-/tapable-1.1.3.tgz#a1fccc06b58db61fd7a45da2da44f5f3a3e67ba2"

@@ -15,7 +15,7 @@ function App() {
   const isSelectedMax = selected === galleryConfig.max;
 
   return (
-    <div className="sans-serif flex flex-column flex-row-l mw9 center pa4">
+    <div className="sans-serif flex flex-column flex-row-l mw8 center pa4">
       <header className="w-20-l pr4-l pb4">
         <h1 className="mt0">Euan Marten</h1>
         <ul className="list pa0">

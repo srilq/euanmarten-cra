@@ -5,24 +5,7 @@ a:hover {
     color: inherit;
 }
 
-.email {
+.url {
     hyphens: none;
     word-break: break-all;
-}
-
-button,
-button:active {
-    background: none;
-    color: #000;
-    border: 1px solid #000;
-}
-
-button:hover:not(:disabled) {
-    background: #000;
-    color: #fff;
-}
-
-button:disabled {
-    color: #dadada;
-    border-color: #dadada;
 }

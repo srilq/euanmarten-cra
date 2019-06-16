@@ -1,15 +1,11 @@
 button.Button,
 button.Button:active {
+    cursor: pointer;
     border-color: currentColor;
 }
 
-button.Button:hover:not(:disabled),
-button.Button:focus {
-    background-color: #000;
-    color: #fff;
-    outline: none;
-}
-
 button.Button:disabled {
-    color: #dadada;
+    cursor: default;
+    background-color: transparent;
+    color: #acacac;
 }

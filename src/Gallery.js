@@ -19,13 +19,13 @@ const Gallery = ({ images }) => {
           disabled={isSelectedMin}
           ariaHidden
           onClick={isSelectedMin ? null : () => setSelected(selected - 1)}>
-            Previous
+            <span aria-hidden>&lt;</span><span className="dn">Previous</span>
         </Button>
         <Button
           disabled={isSelectedMax}
           ariaHidden
           onClick={isSelectedMax ? null : () => setSelected(selected + 1)}>
-            Next
+            <span aria-hidden>&gt;</span><span className="dn">Next</span>
         </Button>
       </div>
       <div className={`Gallery-select-${selected}`}>

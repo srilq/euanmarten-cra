@@ -27,7 +27,7 @@ const Gallery = ({ images }) => {
         </Button>
       </div>
       <div className={`Gallery-select-${selected}`}>
-        {images.map(filename => <GalleryImage filename={filename} />)}
+        {images.map(filename => <GalleryImage key={filename} filename={filename} />)}
       </div>
     </div>
   );

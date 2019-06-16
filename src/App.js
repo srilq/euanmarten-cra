@@ -16,13 +16,14 @@ function App() {
 
   return (
     <div className="sans-serif flex flex-column flex-row-l mw8 center pa4">
-      <header className="w-25-l pr4-l pb4">
-        <h1 className="mt0 f2 fw2 mb4-l ttl">Euan Marten</h1>
-        <ul className="list pa0">
-          <li className="email"><a href="mailto:euanscottm@gmail.com">euanscottm@gmail.com</a></li>
+      <header className="w-30-l pr4-l pb4">
+        <h1 className="mt0 f5 normal mb4 ttl">Euan Marten</h1>
+        <ul className="list pa0 f5">
+          <li className="email">email: <a href="mailto:euanscottm@gmail.com">euanscottm@gmail.com</a></li>
+          <li className="email">instagram: <a href="https://www.instagram.com/e.seilide/">e.seilide</a></li>
         </ul>
       </header>
-      <main className="w-75-l pr5-m pr6-l">
+      <main className="w-70-l pr5-m pr5-l">
         <div className="flex justify-between justify-start-ns mb3">
           <div><button className="pa2 lh-solid f7 mr0 mr3-ns ttl" aria-hidden disabled={isSelectedMin} onClick={isSelectedMin ? null : () => setSelected(selected - 1)}>Previous</button></div>
           <div><button className="pa2 lh-solid f7 mr0 mr3-ns ttl" aria-hidden disabled={isSelectedMax} onClick={isSelectedMax ? null : () => setSelected(selected + 1)}>Next</button></div>

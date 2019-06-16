@@ -13,7 +13,7 @@ const IMAGES = [
 ];
 
 const App = () => (
-  <div className="sans-serif flex flex-column flex-row-l mw8 center pa4">
+  <div className="sans-serif flex flex-column flex-row-l center pa4">
     <div className="w-30-l pr4-l pb4">
       <Header />
     </div>

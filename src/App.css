@@ -1,3 +1,10 @@
+a:link,
+a:visited,
+a:active,
+a:hover {
+    color: inherit;
+}
+
 .email {
     hyphens: none;
     word-break: break-all;

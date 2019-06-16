@@ -17,7 +17,7 @@ function App() {
   return (
     <div className="sans-serif flex flex-column flex-row-l mw8 center pa4">
       <header className="w-25-l pr4-l pb4">
-        <h1 className="mt0">Euan Marten</h1>
+        <h1 className="mt0 f2 fw2 mb4-l">Euan Marten</h1>
         <ul className="list pa0">
           <li className="email"><a href="mailto:euanscottm@gmail.com">euanscottm@gmail.com</a></li>
         </ul>

@@ -9,7 +9,7 @@
 
 .Gallery img {
     width: 100%;
-    max-height: 90vh;
+    max-height: 85vh;
     object-fit: contain;
     object-position: left;
     animation: fadeIn 0.3s;

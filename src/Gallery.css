@@ -1,3 +1,10 @@
+.Gallery img {
+    max-width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+    object-position: left;
+}
+
 .Gallery-select-1 img:not(:nth-of-type(1)) {
     display: none;
 }

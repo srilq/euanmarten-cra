@@ -16,12 +16,14 @@ const Gallery = ({ images }) => {
     <div className="Gallery">
       <div className="flex justify-between justify-start-ns mb3">
         <Button
-          isDisabled={isSelectedMin}
+          disabled={isSelectedMin}
+          ariaHidden
           onClick={isSelectedMin ? null : () => setSelected(selected - 1)}>
             Previous
         </Button>
         <Button
-          isDisabled={isSelectedMax}
+          disabled={isSelectedMax}
+          ariaHidden
           onClick={isSelectedMax ? null : () => setSelected(selected + 1)}>
             Next
         </Button>

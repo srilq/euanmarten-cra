@@ -24,8 +24,8 @@ function App() {
       </header>
       <main className="w-80-l pr5-m pr6-l">
         <div className="flex justify-between mb3">
-          <div><button aria-hidden disabled={isSelectedMin} onClick={isSelectedMin ? null : () => setSelected(selected - 1)}>Previous</button></div>
-          <div><button aria-hidden disabled={isSelectedMax} onClick={isSelectedMax ? null : () => setSelected(selected + 1)}>Next</button></div>
+          <div><button className="pa2 lh-solid" aria-hidden disabled={isSelectedMin} onClick={isSelectedMin ? null : () => setSelected(selected - 1)}>Previous</button></div>
+          <div><button className="pa2 lh-solid" aria-hidden disabled={isSelectedMax} onClick={isSelectedMax ? null : () => setSelected(selected + 1)}>Next</button></div>
         </div>
         <div className={`Gallery Gallery-select-${selected}`}>
           <img src="/images/oranges.jpg" alt="" />

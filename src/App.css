@@ -2,3 +2,8 @@
     hyphens: none;
     word-break: break-all;
 }
+
+button {
+    background: none;
+    border: 1px solid currentColor;
+}

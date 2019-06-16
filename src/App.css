@@ -3,7 +3,14 @@
     word-break: break-all;
 }
 
-button {
+button,
+button:active {
     background: none;
-    border: 1px solid currentColor;
+    color: #000;
+    border: 1px solid #000;
+}
+
+button:disabled {
+    color: #dadada;
+    border-color: #dadada;
 }

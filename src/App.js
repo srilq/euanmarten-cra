@@ -6,6 +6,7 @@ import Header from './Header';
 
 const IMAGES = [
   'oranges.jpg',
+  '18.1.EYEPOINT.2.jpg',
   'self.jpg',
   'dungarees2.jpg',
   'bilbo.jpg',

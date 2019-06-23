@@ -20,7 +20,7 @@ const Thumbnail = ({ filename, alt = '' }) => {
 
   return (
     <a href={src} target="_self">
-      <img src={`/images/${filename}`} alt={alt} className="w-100 db pb1 pb2-ns" />
+      <img src={src} alt={alt} className="w-100 db pb1 pb2-ns" />
     </a>
   );
 };

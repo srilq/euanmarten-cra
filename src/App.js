@@ -20,14 +20,14 @@ const Thumbnail = ({ filename, alt = '' }) => {
 
   return (
     <a href={src} target="_self">
-      <img src={`/images/${filename}`} alt={alt} className="w-100 db" />
+      <img src={`/images/${filename}`} alt={alt} className="w-100 db pb1 pb2-ns" />
     </a>
   );
 };
 
 const ThumbnailColumn = ({ images, className }) => {
   return (
-    <div className={className}>
+    <div className={`${className} ThumbnailColumn`}>
       {images.map(filename => <Thumbnail key={filename} filename={filename} />)}
     </div>
   );
@@ -49,8 +49,8 @@ const TwoColumnLayout = ({ images }) => {
 
   return (
     <div className="flex flex-row">
-      <ThumbnailColumn images={firstColumnImages} className="w-50" />
-      <ThumbnailColumn images={secondColumnImages} className="w-50" />
+      <ThumbnailColumn images={firstColumnImages} className="w-50 pa1 pa2-ns" />
+      <ThumbnailColumn images={secondColumnImages} className="w-50 pa1 pa2-ns pl0 pl0-ns" />
     </div>
   );
 };

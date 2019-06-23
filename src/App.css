@@ -13,3 +13,7 @@ a:hover {
     hyphens: none;
     word-break: break-all;
 }
+
+.ThumbnailColumn {
+    box-sizing: content-box;
+}

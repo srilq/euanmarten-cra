@@ -6,10 +6,14 @@ import Header from './Header';
 
 const IMAGES = [
   'oranges.jpg',
-  '18.1.EYEPOINT.2.jpg',
+  'point.jpg',
+  'body.jpg',
   'self.jpg',
+  'lane.jpg',
   'bilbo.jpg',
-  'peel.jpg'
+  'owl.jpg',
+  'peel.jpg',
+  'sword.jpg'
 ];
 
 const App = () => (

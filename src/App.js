@@ -20,7 +20,7 @@ const Thumbnail = ({ filename, alt = '' }) => {
 
   return (
     <a href={src} target="_self">
-      <img src={src} alt={alt} className="w-100 db pb1 pb2-ns" />
+      <img src={src} alt={alt} className="w-100 db mb1 mb2-ns" />
     </a>
   );
 };
@@ -31,7 +31,7 @@ const ThumbnailColumn = ({ images, className }) => {
       {images.map(filename => <Thumbnail key={filename} filename={filename} />)}
     </div>
   );
-  
+
 }
 
 const TwoColumnLayout = ({ images }) => {

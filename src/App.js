@@ -58,12 +58,12 @@ const TwoColumnLayout = ({ images, thumbnailProps }) => {
     <div className="flex flex-row">
       <ThumbnailColumn
         images={firstColumnImages}
-        className="w-50 pa1 pa2-ns pt0 pt0-ns"
+        className="w-50 pa1 pa2-ns"
         thumbnailProps={thumbnailProps}
       />
       <ThumbnailColumn
         images={secondColumnImages}
-        className="w-50 pa1 pa2-ns pl0 pl0-ns pt0 pt0-ns"
+        className="w-50 pa1 pa2-ns pl0 pl0-ns"
         thumbnailProps={thumbnailProps}
       />
     </div>

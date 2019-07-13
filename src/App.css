@@ -9,11 +9,6 @@ a:hover {
     color: inherit;
 }
 
-.url {
-    hyphens: none;
-    word-break: break-all;
-}
-
 .ThumbnailColumn {
     box-sizing: content-box;
 }

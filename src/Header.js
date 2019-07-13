@@ -2,7 +2,8 @@ import React from 'react';
 import Icon from './Icon';
 
 const IconLink = ({ name, href, children }) => (
-  <a href={href} className="flex ml2"><Icon name={name} />
+  <a href={href} className="flex ml2">
+    <Icon name={name} />
     {children && <span className="dn di-l ml2 lh-title">{children}</span>}
   </a>
 );

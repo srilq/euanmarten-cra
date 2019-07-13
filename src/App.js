@@ -20,14 +20,14 @@ const getImageSrc = filename => `/images/${filename}`;
 
 const Image = ({ image: { src, altText = '' }, ...rest }) => <img src={src} alt={altText} {...rest} />;
 
-const Thumbnail = ({ filename, setCurrentImage }) => {
-  const src = getImageSrc(filename);
+const Thumbnail = ({ imageFilename, setCurrentImage }) => {
+  const src = getImageSrc(imageFilename);
 
   return (
     <div className="mb1 mb2-ns">
       <button
         className="button-reset bn pa0 db w-100 pointer"
-        onClick={() => setCurrentImage(filename)}
+        onClick={() => setCurrentImage(imageFilename)}
       >
         <Image image={{ src }} className="w-100 db" />
       </button>
@@ -37,7 +37,7 @@ const Thumbnail = ({ filename, setCurrentImage }) => {
 
 const ThumbnailColumn = ({ images, className, thumbnailProps }) => (
   <div className={`ThumbnailColumn ${className}`}>
-    {images.map(filename => <Thumbnail key={filename} filename={filename} {...thumbnailProps} />)}
+    {images.map(filename => <Thumbnail key={filename} imageFilename={filename} {...thumbnailProps} />)}
   </div>
 );
 
@@ -58,22 +58,22 @@ const TwoColumnLayout = ({ images, thumbnailProps }) => {
     <div className="flex flex-row">
       <ThumbnailColumn
         images={firstColumnImages}
-        className="w-50 pa1 pa2-ns"
+        className="w-50 pa1 pa2-ns pt0 pt0-ns"
         thumbnailProps={thumbnailProps}
       />
       <ThumbnailColumn
         images={secondColumnImages}
-        className="w-50 pa1 pa2-ns pl0 pl0-ns"
+        className="w-50 pa1 pa2-ns pl0 pl0-ns pt0 pt0-ns"
         thumbnailProps={thumbnailProps}
       />
     </div>
   );
 };
 
-const Lightbox = ({ isOpen, filename, onClose }) => {
-  if(!isOpen || !filename) return null;
+const Lightbox = ({ isOpen, imageFilename, onClose }) => {
+  if(!isOpen || !imageFilename) return null;
 
-  const src = getImageSrc(filename);
+  const src = imageFilename && getImageSrc(imageFilename);
 
   return (
     <div className="Lightbox fixed absolute--fill bg-near-black pt5 pb5 pr3 pl3 pt4-l pb4-l pr5-l pl5-l">
@@ -94,6 +94,8 @@ const Lightbox = ({ isOpen, filename, onClose }) => {
 const App = () => {
   const [currentImage, setCurrentImage] = useState(null);
 
+  const isLightboxOpen = !!currentImage;
+
   return (
     <div className="sans-serif">
       <div className="pa4">
@@ -106,8 +108,8 @@ const App = () => {
         />
       </main>
       <Lightbox
-        isOpen={!!currentImage}
-        filename={currentImage}
+        isOpen={isLightboxOpen}
+        imageFilename={currentImage}
         onClose={() => setCurrentImage(null)}
       />
     </div>

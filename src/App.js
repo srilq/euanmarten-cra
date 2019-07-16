@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import 'tachyons';
 import './App.css';
 import Icon from './Icon';
@@ -70,25 +70,40 @@ const TwoColumnLayout = ({ images, thumbnailProps }) => {
   );
 };
 
-const Lightbox = ({ isOpen, imageFilename, onClose }) => {
-  if(!isOpen || !imageFilename) return null;
-
-  const src = imageFilename && getImageSrc(imageFilename);
+const LightboxOverlay = ({ src, onClose }) => {
+  useEffect(() => {
+    const escapeKeyHandler = event => {
+      if (event.keyCode === 27) { // escape
+        onClose();
+      }
+    };
+    window.addEventListener('keydown', escapeKeyHandler);
+    return () => window.removeEventListener('keydown', escapeKeyHandler);
+  })
 
   return (
     <div className="Lightbox fixed absolute--fill bg-near-black pt5 pb5 pr3 pl3 pt4-l pb4-l pr5-l pl5-l">
       <Image image={{ src }} />
-      <buton
-        className="pointer pa3 absolute top-0 right-0 right-1-ns"
+      <button
+        className="Lightbox-CloseButton button-reset bg-transparent bn db pointer pa3 absolute top-0 right-0 right-1-ns"
         onClick={e => {
           e.preventDefault();
-          onClose && onClose();
+          onClose();
         }}
       >
         <Icon name="CLOSE" className="white" />
-      </buton>
+      </button>
     </div>
   );
+};
+
+const Lightbox = ({ isOpen, imageFilename, ...rest }) => {
+  if(isOpen && imageFilename) {
+    const src = getImageSrc(imageFilename);
+    return <LightboxOverlay src={src} {...rest} />;
+  } else {
+    return null;
+  }
 };
 
 const App = () => {

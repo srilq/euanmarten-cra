@@ -12,7 +12,6 @@ const resizeImage = (filename, width) => {
 
   return gm(path.join(BASE_PATH, filename))
     .resize(width)
-    .quality(80)
     .write(
       path.join(BASE_PATH, `${imageName}_${width}.${imageExtension}`),
       (err) => {

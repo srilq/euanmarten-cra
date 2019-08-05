@@ -83,7 +83,7 @@ const LightboxOverlay = ({ src, onClose }) => {
   })
 
   return (
-    <div className="Lightbox fixed absolute--fill bg-near-black pt5 pb5 pr3 pl3 pt4-l pb4-l pr5-l pl5-l">
+    <div className="Lightbox fixed absolute--fill bg-near-black pt5 pb5 pt4-l pb4-l pr5-l pl5-l">
       <Image image={{ src }} />
       <button
         className="Lightbox-CloseButton button-reset bg-transparent bn db pointer pa3 absolute top-0 right-0 right-1-ns"

@@ -5,13 +5,13 @@ import Icon from './Icon';
 import Header from './Header';
 
 const IMAGES = [
-  'growing.png',
+  'Growing.png',
   'point.jpg',
   'oranges.jpg',
   'body.jpg',
   'self.jpg',
   'lane.jpg',
-  'bilbo.png',
+  'Bilbo.png',
   'owl.jpg',
   'peel.jpg',
   'sword.jpg'

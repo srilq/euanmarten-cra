@@ -7,8 +7,8 @@ import Header from './Header';
 const IMAGES = [
   'growing2.png',
   'point.jpg',
-  'oranges.jpg',
   'body.jpg',
+  'oranges.jpg',
   'self.jpg',
   'bilbo2.png',
   'owl.jpg',

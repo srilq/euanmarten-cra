@@ -21,14 +21,14 @@ const getImageSrc = filename => `/images/${filename}`;
 
 const Image = ({ image: { src, altText = '' }, ...rest }) => <img src={src} alt={altText} {...rest} />;
 
-const Thumbnail = ({ imageFilename, setCurrentImage }) => {
+const Thumbnail = ({ imageFilename, onClick }) => {
   const src = getImageSrc(imageFilename);
 
   return (
     <div className="mb1 mb2-ns">
       <button
         className="button-reset bn pa0 db w-100 pointer"
-        onClick={() => setCurrentImage(imageFilename)}
+        onClick={onClick}
       >
         <Image image={{ src }} className="w-100 db" />
       </button>
@@ -36,13 +36,19 @@ const Thumbnail = ({ imageFilename, setCurrentImage }) => {
   );
 };
 
-const ThumbnailColumn = ({ images, className, thumbnailProps }) => (
+const ThumbnailColumn = ({ images, className, setLightboxImage }) => (
   <div className={`ThumbnailColumn ${className}`}>
-    {images.map(filename => <Thumbnail key={filename} imageFilename={filename} {...thumbnailProps} />)}
+    {images.map(filename => (
+      <Thumbnail
+        key={filename}
+        imageFilename={filename}
+        onClick={() => setLightboxImage(filename)}
+      />
+    ))}
   </div>
 );
 
-const TwoColumnLayout = ({ images, thumbnailProps }) => {
+const TwoColumnLayout = ({ images, setLightboxImage }) => {
   const firstColumnImages = [];
   const secondColumnImages = [];
 
@@ -60,12 +66,12 @@ const TwoColumnLayout = ({ images, thumbnailProps }) => {
       <ThumbnailColumn
         images={firstColumnImages}
         className="w-50 pa1 pa2-ns"
-        thumbnailProps={thumbnailProps}
+        setLightboxImage={setLightboxImage}
       />
       <ThumbnailColumn
         images={secondColumnImages}
         className="w-50 pa1 pa2-ns pl0 pl0-ns"
-        thumbnailProps={thumbnailProps}
+        setLightboxImage={setLightboxImage}
       />
     </div>
   );
@@ -108,9 +114,9 @@ const Lightbox = ({ isOpen, imageFilename, ...rest }) => {
 };
 
 const App = () => {
-  const [currentImage, setCurrentImage] = useState(null);
+  const [lightboxImage, setLightboxImage] = useState(null);
 
-  const isLightboxOpen = !!currentImage;
+  const isLightboxOpen = !!lightboxImage;
 
   return (
     <div className="sans-serif">
@@ -120,13 +126,13 @@ const App = () => {
       <main>
         <TwoColumnLayout
           images={IMAGES}
-          thumbnailProps={{ setCurrentImage }}
+          setLightboxImage={setLightboxImage}
         />
       </main>
       <Lightbox
         isOpen={isLightboxOpen}
-        imageFilename={currentImage}
-        onClose={() => setCurrentImage(null)}
+        imageFilename={lightboxImage}
+        onClose={() => setLightboxImage(null)}
       />
     </div>
   );

@@ -10,7 +10,6 @@ const IMAGES = [
   'oranges.jpg',
   'body.jpg',
   'self.jpg',
-  'lane.jpg',
   'bilbo2.png',
   'owl.jpg',
   'peel.jpg',

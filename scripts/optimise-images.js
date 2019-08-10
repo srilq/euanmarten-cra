@@ -31,13 +31,13 @@ const config = {
   ],
 };
 
-const exec = async config => {
-  const logger = {
-    info: createLoggerFn(console.info, '  '),
-    warn: createLoggerFn(console.warn, '⚠️'),
-    error: createLoggerFn(console.error, '🚨')
-  };
+const logger = {
+  info: createLoggerFn(console.info, '  '),
+  warn: createLoggerFn(console.warn, '⚠️'),
+  error: createLoggerFn(console.error, '🚨')
+};
 
+const exec = async config => {
   try {
     await del(config.outputDir);
     await fs.mkdir(config.outputDir, { recursive: true });

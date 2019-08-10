@@ -12,8 +12,10 @@ const CONTEXT = {
     outputDir: path.join('build', 'images', 'renditions'),
     concurrency: 5,
     fileTypes: ['jpg', 'jpeg', 'png'],
-    pngQuality: 100,
-    jpegQuality: 90,
+    quality: {
+      jpeg: 90,
+      png: 100
+    },
     renditions: [
       {
         width: 100

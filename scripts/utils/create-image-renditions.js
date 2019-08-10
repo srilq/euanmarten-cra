@@ -51,7 +51,7 @@ const optimiseImage = ({ args }, width, height, image) => {
       imageFormat = value.toLowerCase();
     })
     .resize(width, height, '>')
-    .quality(imageFormat === 'png' ? args.pngQuality : args.jpegQuality)
+    .quality(args.quality[imageFormat] || args.quality.jpeg)
     .noProfile();
 };
 

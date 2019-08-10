@@ -33,21 +33,28 @@ const writeImage = (image, path) => {
   });
 };
 
-const optimiseImage = ({ args }, width, height, image) => {
-  let imageFormat;
-
-  return image
-    .format((err, value) => {
+const getImageFormat = ({ filename }, image) => {
+  return new Promise((resolve, reject) => {
+    image.format((err, value) => {
       if (err) {
-        throw err;
+        return reject(err);
       }
 
       if (typeof value !== 'string') {
-        throw new Error('Could not determine image format');
+        return reject(new Error(`Failed to determine image format for ${filename}`));
       }
 
-      imageFormat = value.toLowerCase();
-    })
+      return resolve(value.toLowerCase());
+    });
+  });
+};
+
+const optimiseImage = async (context, width, height, image) => {
+  const { args } = context;
+
+  const imageFormat = await getImageFormat(context, image);
+
+  return image
     .resize(width, height, '>')
     .quality(args.quality[imageFormat] || args.quality.jpeg)
     .noProfile();
@@ -64,7 +71,7 @@ const createRendition = async (context, inputPath, outputPath, filename, { width
   try {
     const image = gm(imagePath);
 
-    const optimisedImage = await optimiseImage(context, width, height, image);
+    const optimisedImage = await optimiseImage({ ...context, filename }, width, height, image);
 
     await writeImage(optimisedImage, renditionPath);
 

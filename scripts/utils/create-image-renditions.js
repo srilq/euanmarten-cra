@@ -21,14 +21,12 @@ const getImageFilenames = async ({ args }, pathToDir) => {
   return imageFilenames;
 };
 
-const writeImage = ({ logger }, image, path) => {
+const writeImage = (image, path) => {
   return new Promise((resolve, reject) => {
     image.write(path, err => {
       if (err) {
         return reject(err);
       }
-
-      logger.info(`Writing ${path}`, '✨');
 
       resolve(image);
     });
@@ -56,16 +54,21 @@ const optimiseImage = ({ args }, width, height, image) => {
 };
 
 const createRendition = async (context, inputPath, outputPath, filename, { width, height }) => {
+  const { logger } = context;
+
   const [imageFileExtension, imageName] = splitFileExtension(filename);
+
   const imagePath = path.join(inputPath, filename);
   const renditionPath = path.join(outputPath, `${imageName}_${width}.${imageFileExtension}`);
 
   try {
     const image = gm(imagePath);
 
-    const optimisedRendition = await optimiseImage(context, width, height, image);
+    const optimisedImage = await optimiseImage(context, width, height, image);
 
-    return writeImage(context, optimisedRendition, renditionPath);
+    await writeImage(optimisedImage, renditionPath);
+
+    logger.info(`Created ${renditionPath}`, '✨');
   } catch (err) {
     err.message = `Error optimising image ${filename}:\n${err.message || ''}`;
     throw err;
@@ -80,10 +83,9 @@ const createImageRenditions = async context => {
 
   const filenames = await getImageFilenames(context, args.inputDir);
 
+  logger.info(`Creating optimised renditions for ${filenames.length} images`);
+
   const limit = promiseLimit(args.concurrency);
-
-  logger.info(`Creating renditions for ${filenames.length} images`);
-
   const jobs = filenames.reduce((acc, filename) => {
     const renditionJobs = renditions.map(async rendition => {
       await createRendition(context, inputDir, outputDir, filename, rendition);

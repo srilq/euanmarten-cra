@@ -87,11 +87,11 @@ const createImageRenditions = async context => {
 
   const limit = promiseLimit(args.concurrency);
   const jobs = filenames.reduce((acc, filename) => {
-    const renditionJobs = renditions.map(async rendition => {
+    const renditionJobs = renditions.map(rendition => async () => {
       await createRendition(context, inputDir, outputDir, filename, rendition);
     });
 
-    acc.push(...renditionJobs.map(job => limit(() => job)));
+    acc.push(...renditionJobs.map(job => limit(() => job())));
 
     return acc;
   }, []);

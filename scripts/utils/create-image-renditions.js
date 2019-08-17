@@ -98,18 +98,21 @@ const createImageRenditions = async context => {
 
   logger.info(`Creating optimised renditions for ${filenames.length} images`);
 
-  const limit = promiseLimit(args.concurrency);
-  const jobs = filenames.reduce((acc, filename) => {
-    const renditionJobs = renditions.map(rendition => () => {
+  const renditionPromiesLimit = promiseLimit(args.concurrency);
+
+  const renditionPromises = filenames.reduce((acc, filename) => {
+    const jobs = renditions.map(rendition => () => {
       return createRendition(context, inputDir, outputDir, filename, rendition);
     });
 
-    acc.push(...renditionJobs.map(job => limit(() => job())));
+    const promises = jobs.map(job => renditionPromiesLimit(() => job()));
+
+    acc.push(...promises);
 
     return acc;
   }, []);
 
-  return Promise.all(jobs);
+  return Promise.all(renditionPromises);
 };
 
 module.exports = createImageRenditions;

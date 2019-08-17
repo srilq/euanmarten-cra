@@ -71,8 +71,11 @@ const createRendition = async (context, inputPath, outputPath, filename, { width
 
   const [imageFileExtension, imageName] = splitFileExtension(filename);
 
+  const renditionName = height ? `${width}x${height}` : width.toString();
+  const renditionFilename = `${imageName}_${renditionName}.${imageFileExtension}`;
+
   const imagePath = path.join(inputPath, filename);
-  const renditionPath = path.join(outputPath, `${imageName}_${width}.${imageFileExtension}`);
+  const renditionPath = path.join(outputPath, renditionFilename);
 
   try {
     const image = gm(imagePath);
@@ -83,7 +86,7 @@ const createRendition = async (context, inputPath, outputPath, filename, { width
 
     logger.info(`Created ${renditionPath}`, '✨');
   } catch (err) {
-    err.message = `Error creating rendition for image ${filename}:\n${err.message || ''}`;
+    err.message = `Error creating rendition ${renditionFilename}:\n${err.message || ''}`;
     throw err;
   }
 };

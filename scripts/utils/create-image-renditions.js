@@ -3,6 +3,8 @@ const fs = require('fs').promises;
 const promiseLimit = require('promise-limit');
 const gm = require('gm');
 
+const DEFAULT_COMPRESSION = 'jpeg';
+
 const splitFileExtension = filename => {
   const DELIMITER = '.';
   const filenameSegments = filename.split(DELIMITER);
@@ -54,9 +56,13 @@ const optimiseImage = async (context, width, height, image) => {
 
   const imageFormat = await getImageFormat(context, image);
 
+  const compression = args.compressionTypes[imageFormat] && args.quality[imageFormat]
+    ? imageFormat
+    : args.defaultCompression || DEFAULT_COMPRESSION;
+
   return image
-    .resize(width, height, '>')
-    .quality(args.quality[imageFormat] || args.quality.jpeg)
+    .resize(width, height, args.resizeOptions)
+    .quality(args.quality[compression])
     .noProfile();
 };
 
@@ -77,7 +83,7 @@ const createRendition = async (context, inputPath, outputPath, filename, { width
 
     logger.info(`Created ${renditionPath}`, '✨');
   } catch (err) {
-    err.message = `Error optimising image ${filename}:\n${err.message || ''}`;
+    err.message = `Error creating rendition for image ${filename}:\n${err.message || ''}`;
     throw err;
   }
 };
@@ -94,8 +100,8 @@ const createImageRenditions = async context => {
 
   const limit = promiseLimit(args.concurrency);
   const jobs = filenames.reduce((acc, filename) => {
-    const renditionJobs = renditions.map(rendition => async () => {
-      await createRendition(context, inputDir, outputDir, filename, rendition);
+    const renditionJobs = renditions.map(rendition => () => {
+      return createRendition(context, inputDir, outputDir, filename, rendition);
     });
 
     acc.push(...renditionJobs.map(job => limit(() => job())));

@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-
 const path = require('path');
 const fs = require('fs').promises;
 const del = require('del');
@@ -9,8 +8,10 @@ const createImageRenditions = require('./utils/create-image-renditions');
 const config = {
   inputDir: path.join('build', 'images'),
   outputDir: path.join('build', 'images', 'renditions'),
-  concurrency: 5,
+  concurrency: 20,
   fileTypes: ['jpg', 'jpeg', 'png'],
+  compressionTypes: ['jpeg', 'png'],
+  defaultCompression: 'jpeg',
   quality: {
     // JPEG compression (lossy)
     // higher number means better quality
@@ -21,6 +22,7 @@ const config = {
     // but it takes longer
     png: 100
   },
+  resizeOptions: '>',
   renditions: [
     {
       width: 100
